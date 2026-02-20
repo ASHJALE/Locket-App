@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>My Locket 💖</title>
+  <link rel="stylesheet" href="/static/style.css">
+</head>
+<body>
+
+  <div class="hearts">
+    <span>❤</span><span>❤</span><span>❤</span>
+    <span>❤</span><span>❤</span><span>❤</span>
+    <span>❤</span><span>❤</span><span>❤</span>
+  </div>
+
+  <div class="container">
+    <h1>OUR MEMORIES TOGETHER </h1>
+
+    <div class="controls">
+      <form action="/upload" method="POST" enctype="multipart/form-data">
+        <input type="text" name="title" placeholder="Write a caption..." required>
+        
+        <div class="upload-wrapper">
+          <label for="file-upload" class="custom-file-upload">
+            <span>📸</span> Post to Locket
+          </label>
+          
+          <input 
+              id="file-upload" 
+              class="file-input-hidden" 
+              type="file" 
+              name="photo" 
+              accept="image/*" 
+              capture="camera" 
+              onchange="this.form.submit()"
+          >
+        </div>
+        <p style="font-size: 10px; color: #ff4d6d; margin-top: 8px;">Photo uploads automatically after selecting!</p>
+      </form>
+    </div>
+
+    <div class="gallery">
+      {% for photo in photos %}
+        <div class="card">
+          <img src="{{ url_for('uploaded_file', filename=photo.filename) }}" alt="Locket moment">
+          <div class="card-content">
+            <p class="title">{{ photo.title }}</p>
+            <p class="date">{{ photo.date }}</p>
+            
+            <form action="/delete/{{ photo.filename }}" method="POST">
+              <button type="submit" class="delete">Remove</button>
+            </form>
+          </div>
+        </div>
+      {% endfor %}
+    </div>
+  </div>
+  <div class="floating-items">
+    <span>❤️</span>
+    <span>chi</span>
+    <span>bami</span>
+    <span>iloveyou</span>
+    <span>❤️</span>
+    <span>chi</span>
+    <span>bami</span>
+    <span>iloveyou</span>
+    <span>❤️</span>
+  </div>
+</body>
+</html>

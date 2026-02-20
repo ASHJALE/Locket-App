@@ -1,0 +1,218 @@
+:root {
+    --primary: #ff4d6d;
+    --primary-hover: #ff758f;
+    --bg-gradient: linear-gradient(135deg, #fff0f3, #ffffff);
+    --glass: rgba(255, 255, 255, 0.7);
+    --shadow: 0 8px 32px rgba(255, 77, 109, 0.15);
+  }
+  
+  body {
+    font-family: "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+    background: var(--bg-gradient);
+    background-attachment: fixed;
+    color: #444;
+    margin: 0;
+    padding: 20px;
+    text-align: center;
+    overflow-x: hidden;
+  }
+  
+  h1 {
+    color: var(--primary);
+    font-size: 2.5rem;
+    font-weight: 800;
+    letter-spacing: -1px;
+    margin-bottom: 20px;
+    text-shadow: 2px 2px 4px rgba(0,0,0,0.05);
+  }
+  
+  /* ✨ Polished Controls */
+  .controls {
+    background: var(--glass);
+    backdrop-filter: blur(10px);
+    display: inline-block;
+    padding: 15px;
+    border-radius: 20px;
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    box-shadow: var(--shadow);
+    margin-bottom: 30px;
+  }
+  
+  input, button {
+    padding: 12px 18px;
+    margin: 5px;
+    border-radius: 12px;
+    border: 1px solid #eee;
+    outline: none;
+    transition: all 0.3s ease;
+  }
+  
+  input:focus {
+    border-color: var(--primary);
+    box-shadow: 0 0 0 3px rgba(255, 77, 109, 0.2);
+  }
+  
+  button {
+    background: var(--primary);
+    color: white;
+    font-weight: 600;
+    border: none;
+    cursor: pointer;
+  }
+  
+  button:hover {
+    background: var(--primary-hover);
+    transform: translateY(-2px);
+    box-shadow: 0 5px 15px rgba(255, 77, 109, 0.3);
+  }
+  
+  button:active {
+    transform: translateY(0);
+  }
+  
+  /* 🖼️ Improved Gallery Grid */
+  .gallery {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+    gap: 25px;
+    max-width: 1000px;
+    margin: 30px auto;
+    padding: 0 20px;
+  }
+  
+  /* 🃏 Modern Card Design */
+  .card {
+    background: white;
+    padding: 10px;
+    border-radius: 24px; /* More rounded like Locket */
+    box-shadow: var(--shadow);
+    transition: transform 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    border: 1px solid rgba(255, 77, 109, 0.1);
+  }
+  
+  .card:hover {
+    transform: scale(1.05) rotate(2deg);
+  }
+  
+  .card img {
+    width: 100%;
+    aspect-ratio: 1 / 1;
+    object-fit: cover;
+    border-radius: 18px;
+  }
+  
+  .title {
+    font-weight: 700;
+    font-size: 1.1rem;
+    margin: 10px 0 2px;
+    color: #333;
+  }
+  
+  .date {
+    font-size: 12px;
+    color: #999;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+  }
+  
+  .delete {
+    background: #fff0f3;
+    color: #ff4d6d;
+    width: 100%;
+    margin-top: 10px;
+    font-size: 12px;
+  }
+  
+  .delete:hover {
+    background: #ff4d6d;
+    color: white;
+  }
+  
+  /* ❤️ Refined Floating Hearts */
+  .hearts span {
+    position: fixed;
+    bottom: -50px;
+    pointer-events: none; /* Stops hearts from blocking clicks */
+    animation: float linear infinite;
+  }
+  
+  @keyframes float {
+    0% { transform: translateY(0) rotate(0deg); opacity: 0; }
+    20% { opacity: 0.6; }
+    100% { transform: translateY(-120vh) rotate(360deg); opacity: 0; }
+  }
+  /* 1. Hide the ugly default input */
+.file-input-hidden {
+    width: 0.1px;
+    height: 0.1px;
+    opacity: 0;
+    overflow: hidden;
+    position: absolute;
+    z-index: -1;
+}
+
+/* 2. Style the Label (The New Button) */
+.custom-file-upload {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    background: linear-gradient(135deg, #ff4d6d, #ff758f);
+    color: white;
+    padding: 14px 28px;
+    border-radius: 50px; /* Capsule shape */
+    font-weight: 600;
+    font-size: 16px;
+    cursor: pointer;
+    transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    box-shadow: 0 10px 20px rgba(255, 77, 109, 0.3);
+    border: 2px solid rgba(255, 255, 255, 0.2);
+}
+
+/* 3. Hover & Animation Effects */
+.custom-file-upload:hover {
+    transform: scale(1.05);
+    background: linear-gradient(135deg, #ff758f, #ff4d6d);
+    box-shadow: 0 15px 25px rgba(255, 77, 109, 0.4);
+}
+
+.custom-file-upload:active {
+    transform: scale(0.95);
+}
+
+/* Optional: Add a subtle pulse to draw attention */
+@keyframes pulse-animation {
+    0% { box-shadow: 0 0 0 0px rgba(255, 77, 109, 0.4); }
+    100% { box-shadow: 0 0 0 15px rgba(255, 77, 109, 0); }
+}
+
+.custom-file-upload {
+    animation: pulse-animation 2s infinite;
+}
+/* Floating Hearts & Words Container */
+.floating-items span {
+    position: fixed;
+    bottom: -50px;
+    pointer-events: none;
+    font-weight: bold;
+    font-size: 18px;
+    color: rgba(255, 77, 109, 0.4);
+    animation: float-word linear infinite;
+    white-space: nowrap;
+  }
+  
+  /* Rotate slightly for variety */
+  .floating-items span:nth-child(1) { left: 5%; animation-duration: 7s; }
+  .floating-items span:nth-child(2) { left: 20%; animation-duration: 9s; }
+  .floating-items span:nth-child(3) { left: 35%; animation-duration: 6s; }
+  .floating-items span:nth-child(4) { left: 50%; animation-duration: 10s; }
+  .floating-items span:nth-child(5) { left: 65%; animation-duration: 8s; }
+  .floating-items span:nth-child(6) { left: 80%; animation-duration: 12s; }
+  .floating-items span:nth-child(7) { left: 90%; animation-duration: 9s; }
+  
+  /* Animation for hearts & words */
+  @keyframes float-word {
+    0% { transform: translateY(0) rotate(0deg); opacity: 0; }
+    20% { opacity: 0.7; }
+    100% { transform: translateY(-120vh) rotate(360deg); opacity: 0; }
+  }

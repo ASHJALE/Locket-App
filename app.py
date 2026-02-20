@@ -34,35 +34,26 @@ def upload():
     title = request.form.get('title')
     photo = request.files.get('photo')
 
-    # Check if a photo was uploaded
     if not photo or photo.filename == '':
         return redirect('/')
 
-    # Ensure the upload folder exists
-    if not os.path.exists(app.config['UPLOAD_FOLDER']):
-        os.makedirs(app.config['UPLOAD_FOLDER'])
+    photo.save(os.path.join(app.config['UPLOAD_FOLDER'], photo.filename))
 
-    # Save the photo
-    filepath = os.path.join(app.config['UPLOAD_FOLDER'], photo.filename)
-    photo.save(filepath)
-
-    # Load existing photos
     photos = load_photos()
 
     # Set timezone to Philippine Time
     ph_tz = pytz.timezone("Asia/Manila")
     now = datetime.now(ph_tz)
 
-    # Append new photo with date
     photos.append({
         "title": title,
         "filename": photo.filename,
         "date": now.strftime("%B %d, %Y • %I:%M %p")  # e.g., Feb 20, 2026 • 07:13 PM
     })
-
-    # Save updated photos
     save_photos(photos)
 
+        
+        
     return redirect('/')
 
 @app.route('/delete/<filename>', methods=['POST'])
@@ -83,7 +74,6 @@ def uploaded_file(filename):
 
 import os
 
-
 if __name__ == "__main__":
-    port = int(os.environ.get("PORT", 5000))  # Render assigns the port
-    app.run(host="0.0.0.0", port=port)        # Must bind to all interfaces
+    port = int(os.environ.get("PORT", 5000))
+    app.run(host="0.0.0.0", port=port, debug=True)

@@ -2,6 +2,8 @@ from flask import Flask, render_template, request, redirect, send_from_directory
 import os, json
 from datetime import datetime
 
+from datetime import datetime
+import pytz
 app = Flask(__name__)
 
 UPLOAD_FOLDER = os.path.join(os.getcwd(), 'uploads')
@@ -38,13 +40,20 @@ def upload():
     photo.save(os.path.join(app.config['UPLOAD_FOLDER'], photo.filename))
 
     photos = load_photos()
+
+    # Set timezone to Philippine Time
+    ph_tz = pytz.timezone("Asia/Manila")
+    now = datetime.now(ph_tz)
+
     photos.append({
         "title": title,
         "filename": photo.filename,
-        "date": datetime.now().strftime("%B %d, %Y • %I:%M %p")
+        "date": now.strftime("%B %d, %Y • %I:%M %p")  # e.g., Feb 20, 2026 • 07:13 PM
     })
     save_photos(photos)
 
+        
+        
     return redirect('/')
 
 @app.route('/delete/<filename>', methods=['POST'])
